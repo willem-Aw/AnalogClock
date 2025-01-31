@@ -1,0 +1,70 @@
+
+function clock() {
+    const date = new Date();
+    hour = getDateInfo(date).hour;
+    min = getDateInfo(date).min;
+    sec = getDateInfo(date).sec;
+
+    hour = hour === 0 ? 12 : hour;
+
+    secTime.innerHTML = addZero(sec);
+    minTime.innerHTML = addZero(min);
+    hourTime.innerHTML = addZero(hour);
+
+    // secDot.innerHTML = "";
+    hourDot.innerHTML = "";
+    minDot.innerHTML = "";
+    for (let i = 1; i < 61; i++) {
+        const mdot = document.createElement('span');
+        addClassList(mdot, ['dot']);
+        /* 
+            6deg = 1 minute
+            30deg = 1 hour
+            because 1 hour = 60 minutes
+            6 * 60 = 360
+            30 * 12 = 360
+         */
+        if (i % 5 === 0) {
+            const hdot = document.createElement('span');
+            addClassList(hdot, ['dot', 'hour-dot']);
+            hdot.style.transform = `rotate(${(i * 30) / 5}deg)`;
+            hourDot.appendChild(hdot);
+
+            if (((i / 5) === hour) || ((i / 5) <= hour)) {
+                addClassList(hdot, ['active-dot']);
+                hdot.style.width = '12px'
+                hdot.style.height = '3px'
+            }
+        } else {
+            /* const sdot = document.createElement('span');
+            sdot.classList.add('dot');
+            if (i === sec || i <= sec) {
+                sdot.classList.add('active-dot');
+            }
+            sdot.style.transform = `rotate(${i * 6}deg)`;
+            secDot.appendChild(sdot); */
+
+            const mdot = document.createElement('span');
+            addClassList(mdot, ['dot']);
+            if (i === min || i <= min) {
+                addClassList(mdot, ['active-dot']);
+            }
+
+            mdot.style.transform = `rotate(${i * 6}deg)`;
+
+            minDot.appendChild(mdot);
+        }
+    }
+
+    const hourDeg = (hour * 30) + (min * 0.5); // 30 degrés par heure + 0.5 degré par minute
+    const minDeg = (min * 6) + (sec * 0.1);    // 6 degrés par minute + 0.1 degré par seconde
+    const secDeg = sec * 6;                    // 6 degrés par seconde
+
+    hourTimeNeedle.style.transform = `rotate(${hourDeg}deg)`; // Pas de réinitialisation à 360
+    minTimeNeedle.style.transform = `rotate(${minDeg}deg)`;   // Pas de réinitialisation à 360
+    secTimeNeedle.style.transform = `rotate(${secDeg}deg)`;   // Pas de réinitialisation à 360
+}
+
+
+setInterval(clock, 1000);
+clock()

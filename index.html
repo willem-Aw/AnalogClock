@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog clock</title>
+    <link rel="stylesheet" href="./Assets/style.css">
+</head>
+<body>
+    <main class="content">
+        <div class="container">
+            <div class="clock">
+                <div class="hour hour-dots dots" data-hour style="--color: #055845;">
+                    <div class="innerDots" style="--active-color: #DF8DA8;--dot-height: 3px;--dot-width:12px;"></div>
+                </div>
+                <div class="needles">
+                    <div class="needle hour"></div>
+                    <div class="needle min"></div>
+                    <div class="needle sec"></div>
+                </div>
+                <div class="min min-dots dots" data-min style="--color: #29A198;">
+                    <div class="innerDots" style="--color: #4D1E4C; --active-color:#2EB298; --dot-height: 2px; --dot-width:8px;"></div>
+                </div>
+                <!-- <div class="sec sec-dots dots" data-sec style="--color: #2EB298;">
+                    <div class="innerDots" style="--active-color: #859900; --dot-height: 2px; --dot-width:8px;"></div>
+                    <p class="time" style="--color: #859900;"></p>
+                </div> -->
+            </div>
+            <div class="time">
+                <p class="hour" style="--color: #DF8DA8;">00</p>
+                <p class="min" style="--color: #29A198;">00</p>
+                <p class="sec" style="--color: #859900;">00</p>
+            </div>
+        </div>
+    </main>
+    <script src="./Assets/app.js" type="module"></script>
+</body>
+</html>
